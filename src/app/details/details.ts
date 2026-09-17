@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Housing } from "../housing";
 import { HousingLocationInfo } from "../housinglocation";
@@ -50,6 +50,7 @@ import { last } from "rxjs";
 export class Details {
   route = inject(ActivatedRoute);
   housingService = inject(Housing);
+  changeDetectorRef = inject(ChangeDetectorRef);
 
   housingLocation: HousingLocationInfo | undefined;
   housingLocationId = 0;
@@ -62,9 +63,12 @@ export class Details {
 
   constructor() {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
-    this.housingLocation = this.housingService.getHousingLocationById(
-      this.housingLocationId,
-    );
+    this.housingService
+      .getHousingLocationById(this.housingLocationId)
+      .then((housingLocation) => {
+        this.housingLocation = housingLocation;
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
   submitApplication() {
