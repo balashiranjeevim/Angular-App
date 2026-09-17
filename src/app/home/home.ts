@@ -40,8 +40,8 @@ export class Home {
       .getAllHousingLocations()
       .then((housingLocationList: HousingLocationInfo[]) => {
         this.housingLocationList = housingLocationList;
-        this.changeDetectorRef.detectChanges();
         this.filteredLocationList = housingLocationList;
+        this.changeDetectorRef.detectChanges();
       });
   }
 
