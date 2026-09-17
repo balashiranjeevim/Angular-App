@@ -2,9 +2,11 @@ import { Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Housing } from "../housing";
 import { HousingLocationInfo } from "../housinglocation";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { last } from "rxjs";
 
 @Component({
-  imports: [],
+  imports: [ReactiveFormsModule],
   selector: "app-details",
   styleUrls: ["./details.css"],
   template: `
@@ -30,7 +32,17 @@ import { HousingLocationInfo } from "../housinglocation";
       </section>
       <section class="listing-apply">
         <h2 class="section-heading">Apply to live here</h2>
-        <button class="primary" type="button">Apply now</button>
+        <form [formGroup]="applyForm">
+          <label class="first-name">First Name</label>
+          <input id="first-name" type="text" formControlName="lastName">
+
+          <label class="last-name">Last Name</label>
+          <input id="last-name" type="text" formControlName="lastName">
+
+          <label class="email">First Name</label>
+          <input id="email" type="text" formControlName="firstName">
+          <button type="submit" class="primary">Apply Now</button>
+        </form>
       </section>
     </article>
   `,
@@ -41,6 +53,12 @@ export class Details {
 
   housingLocation: HousingLocationInfo | undefined;
   housingLocationId = 0;
+
+  applyForm = new FormControl({
+    firstName: new FormControl('')
+    lastName : new FormControl('')
+    email: new FormControl('')
+  })
 
   constructor() {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
