@@ -32,15 +32,15 @@ import { last } from "rxjs";
       </section>
       <section class="listing-apply">
         <h2 class="section-heading">Apply to live here</h2>
-        <form [formGroup]="applyForm">
+        <form [formGroup]="applyForm" (submit)="submitApplication()">
           <label class="first-name">First Name</label>
-          <input id="first-name" type="text" formControlName="lastName" />
+          <input id="first-name" type="text" formControlName="firstName" />
 
           <label class="last-name">Last Name</label>
           <input id="last-name" type="text" formControlName="lastName" />
 
           <label class="email">Email</label>
-          <input id="email" type="text" formControlName="firstName" />
+          <input id="email" type="text" formControlName="email" />
           <button type="submit" class="primary">Apply Now</button>
         </form>
       </section>
