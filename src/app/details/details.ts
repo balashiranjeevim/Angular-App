@@ -39,7 +39,7 @@ import { last } from "rxjs";
           <label class="last-name">Last Name</label>
           <input id="last-name" type="text" formControlName="lastName" />
 
-          <label class="email">First Name</label>
+          <label class="email">Email</label>
           <input id="email" type="text" formControlName="firstName" />
           <button type="submit" class="primary">Apply Now</button>
         </form>
@@ -64,6 +64,14 @@ export class Details {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
     this.housingLocation = this.housingService.getHousingLocationById(
       this.housingLocationId,
+    );
+  }
+
+  submitApplication() {
+    this.housingService.submitApplication(
+      this.applyForm.value.firstName ?? "",
+      this.applyForm.value.lastName ?? "",
+      this.applyForm.value.email ?? "",
     );
   }
 }
