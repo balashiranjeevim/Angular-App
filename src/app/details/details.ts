@@ -54,7 +54,7 @@ export class Details {
   housingLocation: HousingLocationInfo | undefined;
   housingLocationId = 0;
 
-  applyForm = new FormControl({
+  applyForm = new FormGroup({
     firstName: new FormControl(""),
     lastName: new FormControl(""),
     email: new FormControl(""),
