@@ -34,13 +34,13 @@ import { last } from "rxjs";
         <h2 class="section-heading">Apply to live here</h2>
         <form [formGroup]="applyForm">
           <label class="first-name">First Name</label>
-          <input id="first-name" type="text" formControlName="lastName">
+          <input id="first-name" type="text" formControlName="lastName" />
 
           <label class="last-name">Last Name</label>
-          <input id="last-name" type="text" formControlName="lastName">
+          <input id="last-name" type="text" formControlName="lastName" />
 
           <label class="email">First Name</label>
-          <input id="email" type="text" formControlName="firstName">
+          <input id="email" type="text" formControlName="firstName" />
           <button type="submit" class="primary">Apply Now</button>
         </form>
       </section>
@@ -55,10 +55,10 @@ export class Details {
   housingLocationId = 0;
 
   applyForm = new FormControl({
-    firstName: new FormControl('')
-    lastName : new FormControl('')
-    email: new FormControl('')
-  })
+    firstName: new FormControl(""),
+    lastName: new FormControl(""),
+    email: new FormControl(""),
+  });
 
   constructor() {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
